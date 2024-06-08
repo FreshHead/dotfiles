@@ -145,6 +145,8 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local data_path = vim.fn.stdpath 'data'
+      local volarLocation = data_path .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -169,14 +171,16 @@ return {
               {
                 name = '@vue/typescript-plugin',
                 -- location = '/home/u/.nvm/versions/node/v20.8.0/lib/node_modules/@vue/typescript-plugin',
-                location = require('custom.utils.getPath').get_npm_global_path() .. '/@vue/typescript-plugin',
+                -- location = require('custom.utils.getPath').get_npm_global_path() .. '/@vue/typescript-plugin',
+                -- location = '/home/u/.config/yarn/global',
+                location = volarLocation,
                 languages = { 'javascript', 'typescript', 'vue' },
               },
             },
           },
         },
 
-        volar = { filetypes = { 'vue' } },
+        volar = { filetypes = { 'vue', 'typescript' } },
 
         lua_ls = {
           -- cmd = {...},

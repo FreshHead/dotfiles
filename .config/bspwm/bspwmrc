@@ -5,23 +5,24 @@ xsetroot -cursor_name left_ptr
 sxhkd &
 polybar -r example --config=~/.config/polybar/config.ini &
 setxkbmap -layout us,ru -option 'ctrl:nocaps,grp:lctrl_toggle' &
+xrandr --output HDMI-2 --same-as eDP-1 & 
 
 
-bspc monitor -d web code e2e tg obsidian 6 7 8 qb
+bspc monitor -d web code obsidian e2e telegram 6 7 8 qb
 
 bspc config normal_border_color "#23252e"
 bspc config active_border_color "#23252e"
 bspc config focused_border_color "#f9f8fe"
 bspc config presel_feedback_color "#23252e"
 
-bspc rule -a "Chromium-browser" -o desktop='^1'
+bspc rule -a "Chromium-browser" desktop='^1'
 # bspc rule -a "kitty" -o desktop='^2'
 # bspc rule -a "Gnome-terminal" -o desktop='^2'
 bspc rule -a "Alacritty" -o desktop='^2'
-bspc rule -a "Cypress" - o desktop='^3'
-bspc rule -a "TelegramDesktop" desktop='^4'
-bspc rule -a "obsidian" -o desktop='^5'
-bspc rule -a "qBittorrent" -o desktop='^9'
+bspc rule -a "obsidian" desktop='^3'
+bspc rule -a "Cypress" desktop='^4'
+bspc rule -a "TelegramDesktop" desktop='^5'
+bspc rule -a "qBittorrent" desktop='^9'
 # bspc rule -a dmenu rectangle=900x22+610+90
 
 chromium &
@@ -35,5 +36,5 @@ obsidian &
 # alacritty -e tmux &
 # gnome-terminal -- zsh -c "tmuxifier load-session sweep"
 # alacritty -e "nvim ~/.config/nvim/"
-Telegram &
+telegram-desktop &
 qbittorrent &

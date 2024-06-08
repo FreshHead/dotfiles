@@ -4,7 +4,7 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-EDITOR=/usr/local/bin/nvim
+export EDITOR=/usr/local/bin/nvim
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -30,3 +30,4 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 source ~/.bash_completion/alacritty
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
+source ~/.bash_completion/alacritty
