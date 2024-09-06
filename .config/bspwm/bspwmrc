@@ -4,7 +4,9 @@ bspc rule -r "*"
 xsetroot -cursor_name left_ptr
 sxhkd &
 polybar -r example --config=~/.config/polybar/config.ini &
-setxkbmap -layout us,ru -option 'ctrl:nocaps,grp:lctrl_toggle' &
+# setxkbmap -layout us,ru -option 'ctrl:nocaps,grp:lctrl_toggle' &
+setxkbmap -layout us,ru -option 'grp:caps_switch' &
+xcape -e "Control_L=Escape" &
 xrandr --output HDMI-2 --same-as eDP-1 & 
 
 
@@ -20,7 +22,8 @@ bspc rule -a "Chromium-browser" desktop='^1'
 # bspc rule -a "Gnome-terminal" -o desktop='^2'
 bspc rule -a "Alacritty" -o desktop='^2'
 bspc rule -a "obsidian" desktop='^3'
-bspc rule -a "Cypress" desktop='^4'
+# bspc rule -a "Cypress" desktop='^4'
+bspc rule -a "Chromium-browser":"text_html," desktop='^4' focus=off
 bspc rule -a "TelegramDesktop" desktop='^5'
 bspc rule -a "qBittorrent" desktop='^9'
 # bspc rule -a dmenu rectangle=900x22+610+90

@@ -160,11 +160,37 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
+        -- eslint = {
+        --   cmd = { 'vscode-eslint-language-server', '--stdio' },
+        --   filetypes = {
+        --     'javascript',
+        --     'javascriptreact',
+        --     'javascript.jsx',
+        --     'typescript',
+        --     'typescriptreact',
+        --     'typescript.tsx',
+        --   },
+        --   format = true,
+        --   nodePath = '',
+        --   onIgnoredFiles = 'off',
+        --   packageManager = 'npm',
+        --   problems = {
+        --     shortenToSingleLine = false,
+        --   },
+        --   quiet = false,
+        --   run = 'onType',
+        --   useESLintClass = false,
+        --   validate = 'on',
+        --   workingDirectory = {
+        --     mode = 'location',
+        --   },
+        -- },
 
         tsserver = {
           filetypes = {
             'typescript',
             'vue',
+            'javascript',
           },
           init_options = {
             plugins = {
