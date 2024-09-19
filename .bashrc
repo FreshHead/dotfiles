@@ -4,7 +4,8 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-export EDITOR=/usr/local/bin/nvim
+# export EDITOR=/usr/local/bin/nvim
+export EDITOR=/opt/nvim-linux64/bin/nvim
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -27,6 +28,7 @@ esac
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH="$PATH:/opt/nvim-linux64/bin"
 source ~/.bash_completion/alacritty
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
