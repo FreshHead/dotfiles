@@ -24,7 +24,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -103,7 +103,18 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('<leader>c', vim.lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
+          map('<leader>d', function()
+            vim.lsp.buf.code_action {
+              context = {
+                only = {
+                  'source',
+                },
+                diagnostics = {},
+              },
+            }
+          end, 'Code [D]ocument action')
+
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -177,7 +188,35 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {
+          root_dir = function(...)
+            return require('lspconfig.util').root_pattern '.git' (...)
+          end,
+          filetypes = {
+            'javascript',
+            'typescript',
+            'vue',
+          },
+          init_options = {
+            hostInfo = 'neovim',
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = require('utils.getPath').get_npm_global_path() .. '/@vue/typescript-plugin',
+                languages = {
+                  'vue',
+                },
+              },
+            },
+          },
+          settings = {
+            typescript = {
+              inlayHints = {
+                importModuleSpecifierPreference = 'non-relative',
+              },
+            },
+          },
+        },
         --
 
         lua_ls = {

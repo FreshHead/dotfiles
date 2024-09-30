@@ -5,7 +5,7 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>bb',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
@@ -33,6 +33,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        -- vue = { 'eslint_d' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -40,6 +41,15 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
+    config = function()
+      require('conform').setup {
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = vim.api.nvim_create_augroup('EslintFixAll', { clear = true }),
+          pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+          command = 'silent! EslintFixAll',
+        }),
+      }
+    end,
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
