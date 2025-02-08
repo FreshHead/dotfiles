@@ -3,14 +3,14 @@ bspc rule -r "*"
 
 xsetroot -cursor_name left_ptr
 sxhkd &
+wmname LG3D &
 polybar -r example --config=~/.config/polybar/config.ini &
 # setxkbmap -layout us,ru -option 'ctrl:nocaps,grp:lctrl_toggle' &
 setxkbmap -layout us,ru -option 'grp:caps_switch' &
 xcape -e "Control_L=Escape" &
 xrandr --output HDMI-2 --same-as eDP-1 & 
 
-
-bspc monitor -d web code obsidian e2e telegram 6 7 8 qb
+bspc monitor -d web code obsidian 4 telegram 6 7 8 qb
 
 bspc config normal_border_color "#23252e"
 bspc config active_border_color "#23252e"
@@ -20,7 +20,7 @@ bspc config presel_feedback_color "#23252e"
 bspc rule -a "Chromium-browser" desktop='^1'
 # bspc rule -a "kitty" -o desktop='^2'
 # bspc rule -a "Gnome-terminal" -o desktop='^2'
-bspc rule -a "Alacritty" -o desktop='^2'
+bspc rule -a "Kitty" -o desktop='^2'
 bspc rule -a "obsidian" desktop='^3'
 # bspc rule -a "Cypress" desktop='^4'
 bspc rule -a "Chromium-browser":"text_html," desktop='^4' focus=off
@@ -29,9 +29,8 @@ bspc rule -a "qBittorrent" desktop='^9'
 # bspc rule -a dmenu rectangle=900x22+610+90
 
 chromium &
-alacritty &
+kitty &
 obsidian &
-# kitty 'tmuxifier load-session sweep' &
 # gnome-terminal -- "tmuxifier load-session sweep" &
 # gnome-terminal -- "nvim" &
 # alacritty --command="tmuxifier load-session sweep" &

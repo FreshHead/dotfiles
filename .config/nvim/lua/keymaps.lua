@@ -47,7 +47,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.keymap.set('n', 'cp', ':let @+ = expand("%:t:r")<cr>')
 
-vim.keymap.set('n', '<C-w>', ':wa<cr>')
+vim.keymap.set('n', 'cP', function()
+    local filename = vim.fn.expand('%:t:r')
+    local firstToUpper = filename:gsub("^%l", string.upper)
+    -- vim.cmd('let @+ = "' .. firstToUpper.. '"')
+    vim.cmd('let @+ = "some"')
+end)
+
+vim.keymap.set('n', '<C-e>', ':wa<cr>')
 
 -- Don't copy the replaced text after pasting in visual mode
 -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste

@@ -29,7 +29,11 @@ esac
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin"
-source ~/.bash_completion/alacritty
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoredups
+
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
 alias config='/usr/bin/git --git-dir=/home/u/.cfg/ --work-tree=/home/u'
+alias nvimc='nvim /home/u/.config/nvim'
 source ~/.bash_completion/alacritty

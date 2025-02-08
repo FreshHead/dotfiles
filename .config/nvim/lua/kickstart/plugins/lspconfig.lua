@@ -28,6 +28,7 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      'antosha417/nvim-lsp-file-operations'
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -166,7 +167,11 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      capabilities = vim.tbl_deep_extend('force',
+        capabilities,
+        require('cmp_nvim_lsp').default_capabilities(),
+        require 'lsp-file-operations'.default_capabilities()
+      )
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -188,6 +193,9 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
+        graphql = {
+          filetypes = { 'qql', 'graphql' }
+        },
         ts_ls = {
           root_dir = function(...)
             return require('lspconfig.util').root_pattern '.git' (...)
@@ -233,6 +241,8 @@ return {
             },
           },
         },
+        cssls = {},
+        emmet_ls = {},
       }
 
       -- Ensure the servers and tools above are installed

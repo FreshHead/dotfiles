@@ -1,5 +1,5 @@
 # make sxhkd reload its configuration files
-alt + Escape
+alt + F10
 	pkill -USR1 -x sxhkd
  
 # quit or restart bspwm
@@ -7,8 +7,10 @@ alt + shift + {q,r}
 	bspc {quit,wm -r}
  
 # create a new terminal window or swap the current one to the biggest one in the screen 
-alt + {_,shift + }Return
-	{alacritty -e tmux, bspc node -s biggest.local}
+# alt + {_,shift + }Return
+# 	{alacritty -e tmux, bspc node -s biggest.local}
+ctrl + shift + k
+	kitty
  
 # close or kill a window
 alt + {_,shift + }c
@@ -27,8 +29,9 @@ super + g
 	bspc node -s biggest.local
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }n
-	bspc node -f {next,prev}.local
+# super + {_,shift + }n
+F10
+	bspc node -f next.local.!hidden.window
  
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -64,5 +67,9 @@ alt + d
   rofi -show drun -show-icons
 
 # screenshot
+# {shift + ,_} Print
+	# maim {--select,_} ~/Pictures/screenshots/$(date +%Y-%b-%d--%H-%M-%S).png
+
 {shift + ,_} Print
-	maim {--select,_} ~/Pictures/screenshots/$(date +%Y-%b-%d--%H-%M-%S).png
+        maim --select {~/Pictures/screenshots/$(date +%Y-%b-%d--%H-%M-%S).png, | xclip -selection clipboard -t image/png}
+
