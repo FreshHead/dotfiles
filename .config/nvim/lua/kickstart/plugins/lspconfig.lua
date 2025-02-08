@@ -196,31 +196,16 @@ return {
         graphql = {
           filetypes = { 'qql', 'graphql' }
         },
+        volar = {},
         ts_ls = {
-          root_dir = function(...)
-            return require('lspconfig.util').root_pattern '.git' (...)
-          end,
-          filetypes = {
-            'javascript',
-            'typescript',
-            'vue',
-          },
+          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
           init_options = {
-            hostInfo = 'neovim',
             plugins = {
               {
                 name = '@vue/typescript-plugin',
-                location = require('utils.getPath').get_npm_global_path() .. '/@vue/typescript-plugin',
-                languages = {
-                  'vue',
-                },
-              },
-            },
-          },
-          settings = {
-            typescript = {
-              inlayHints = {
-                importModuleSpecifierPreference = 'non-relative',
+                location = vim.fn.stdpath 'data' ..
+                    '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                languages = { 'vue' },
               },
             },
           },
